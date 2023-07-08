@@ -1,0 +1,7 @@
+{
+  "localhost": {
+    "TokenA": "0x5f8f3129d2Fa64C889bb7eaB558B1fCDa8A5929e",
+    "TokenB": "0x9A2c1403893abBF8C92D076869259076623856Ce",
+    "LiquidityManager": "0x77048d8B69F5d77Fb454Bfa9f18C0BE4DD6d54A6"
+  }
+}
