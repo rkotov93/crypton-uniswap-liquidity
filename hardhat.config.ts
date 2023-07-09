@@ -27,7 +27,8 @@ const config: HardhatUserConfig = {
         mnemonic: process.env.MNEMONIC
       },
       forking: {
-        url: <string>process.env.GOERLI_RPC_URI
+        url: <string>process.env.GOERLI_RPC_URI,
+        blockNumber: 9317394
       }
     },
     goerli: {
