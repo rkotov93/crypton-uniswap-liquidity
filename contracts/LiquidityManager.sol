@@ -25,11 +25,6 @@ contract LiquidityManager {
   }
 
   function addLiquidity(address tokenA, address tokenB, uint amountA, uint amountB) external {
-    address pair = IUniswapV2Factory(factory).getPair(tokenA, tokenB);
-    if (pair == address(0)) {
-      pair = IUniswapV2Factory(factory).createPair(tokenA, tokenB);
-    }
-
     transferFromSender(tokenA, amountA);
     transferFromSender(tokenB, amountB);
 
@@ -39,6 +34,7 @@ contract LiquidityManager {
     (uint sentAmountA, uint sentAmountB,) =
       IUniswapV2Router02(router).addLiquidity(tokenA, tokenB, amountA, amountB, 1, 1, msg.sender, block.timestamp);
 
+    address pair = IUniswapV2Factory(factory).getPair(tokenA, tokenB);
     emit AddedLiquidity(tokenA, tokenB, sentAmountA, sentAmountB, msg.sender, pair);
   }
 
