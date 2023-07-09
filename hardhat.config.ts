@@ -1,8 +1,9 @@
 import * as dotenv from "dotenv";
-dotenv.config({ path: __dirname+'/.env' });
+dotenv.config({ path: __dirname+"/.env" });
 
-import '@nomiclabs/hardhat-waffle'
-import '@nomiclabs/hardhat-ethers'
+import "@nomiclabs/hardhat-etherscan"
+import "@nomiclabs/hardhat-waffle"
+import "@nomiclabs/hardhat-ethers"
 import { HardhatUserConfig } from "hardhat/config";
 
 require('./tasks')
@@ -29,11 +30,19 @@ const config: HardhatUserConfig = {
       forking: {
         url: <string>process.env.GOERLI_RPC_URI,
         blockNumber: 9317394
-      }
+      },
+      chainId: 31337
     },
     goerli: {
-      url: <string>process.env.GOERLI_RPC_URI
+      url: <string>process.env.GOERLI_RPC_URI,
+      accounts: {
+        mnemonic: process.env.MNEMONIC
+      },
+      chainId: 5
     }
+  },
+  etherscan: {
+    apiKey: process.env.ETHERSCAN_API_KEY
   }
 };
 
