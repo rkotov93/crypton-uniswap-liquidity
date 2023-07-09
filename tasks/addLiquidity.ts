@@ -33,8 +33,10 @@ task("addLiquidity", "Adds liquidity for pair tokens")
     const LiquidityManager = await ethers.getContractFactory("LiquidityManager")
     const liquidityManager: Contract = LiquidityManager.attach(addresses["LiquidityManager"])
 
-    await approve("TokenA", tokenA, liquidityManager.address, amountA)
-    await approve("TokenB", tokenB, liquidityManager.address, amountB)
+    await Promise.all([
+      approve("TokenA", tokenA, liquidityManager.address, amountA),
+      approve("TokenB", tokenB, liquidityManager.address, amountB)
+    ])
 
     const transaction: ContractTransaction =
       await liquidityManager.addLiquidity(tokenA.address, tokenB.address, amountA, amountB)

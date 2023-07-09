@@ -9,8 +9,10 @@ async function deployPairToken(name: string, symbol: string, supply: BigNumber) 
 }
 
 async function main() {
-  await deployPairToken("PairToken1", "PTK1", ethers.utils.parseUnits("10", "ether"))
-  await deployPairToken("PairToken2", "PTK2", ethers.utils.parseUnits("10", "ether"))
+  await Promise.all([
+    deployPairToken("PairToken1", "PTK1", ethers.utils.parseUnits("10", "ether")),
+    deployPairToken("PairToken2", "PTK2", ethers.utils.parseUnits("10", "ether"))
+  ])
 }
 
 // We recommend this pattern to be able to use async/await everywhere
